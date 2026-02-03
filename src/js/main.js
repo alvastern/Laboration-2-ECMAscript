@@ -6,7 +6,7 @@ let tabell = document.getElementById('body-tabell');
 // Funktioner för att hämta data från API med try/catch och async/await
 async function getData() {
     try {
-        const response = await fetch("ramschema.json");
+        const response = await fetch("/ramschema.json");
         const data = await response.json();
 
         return data;
