@@ -1,5 +1,8 @@
 "use strict"
 
+let courses = [];
+let tabell = document.getElementById('body-tabell');
+
 // Funktioner för att hämta data från API med try/catch och async/await
 async function getData() {
     try {
@@ -14,7 +17,7 @@ async function getData() {
 }
 
 async function init() {
-    const courses = await getData();
+    courses = await getData();
     console.log('Hämtad data', courses)
     renderTable(courses);
 }
@@ -22,10 +25,8 @@ async function init() {
 init();
 
 // Skapar nya element för kurskoder i tabellen
-let courses = [];
-let tabell = document.getElementById('body-tabell');
-
 function renderTable(courseList) {
+    tabell.innerHTML = "";
 
     courseList.forEach(course => {
         let rowCourse = document.createElement('tr');
@@ -46,3 +47,27 @@ function renderTable(courseList) {
         tabell.appendChild(rowCourse);
     });
 };
+
+// Soterar kurskoderna i tabellen utifrån bokstavsordning vid klick
+let kurskod = document.getElementById('kurskod');
+
+kurskod.addEventListener('click', () => {
+    courses.sort((a, b) => a.code.localeCompare(b.code));
+    renderTable(courses);
+});
+
+// Soterar kursnamnen i tabellen utifrån bokstavsordning vid klick
+let kursnamn = document.getElementById('kursnamn');
+
+kursnamn.addEventListener('click', () => {
+    courses.sort((a, b) => a.coursename.localeCompare(b.coursename));
+    renderTable(courses);
+});
+
+// Soterar kursnamnen i tabellen utifrån bokstavsordning vid klick
+let prog = document.getElementById('progression');
+
+prog.addEventListener('click', () => {
+    courses.sort((a, b) => a.progression.localeCompare(b.progression));
+    renderTable(courses);
+});
