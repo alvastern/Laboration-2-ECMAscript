@@ -17,5 +17,21 @@ input {
 }
 
 #tabell {
-    margin: 2.5vh 5vw;
+    width: 60%;
+    padding: 2vh 4vw;
+}
+
+#tabell th {
+    padding: 1vh 1vw;
+    text-align: left; 
+    cursor: pointer;
+}
+
+#tabell td {
+    padding: 1vh 1vw;
+    border-bottom: 1px solid #ddd;
+}
+
+#tabell th:hover {
+    background-color: #D9D9D9;
 }
