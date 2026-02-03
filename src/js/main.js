@@ -71,3 +71,17 @@ prog.addEventListener('click', () => {
     courses.sort((a, b) => a.progression.localeCompare(b.progression));
     renderTable(courses);
 });
+
+// Filtrera tabellen baserat på sökning
+let searchInput = document.getElementById('search');
+
+searchInput.addEventListener('input', () => {
+    let searchValue = searchInput.value.toLowerCase();
+
+    let filtered = courses.filter(courses => {
+        return courses.code.toLowerCase().includes(searchValue) ||
+        courses.coursename.toLowerCase().includes(searchValue)
+    });
+
+    renderTable(filtered);
+});
