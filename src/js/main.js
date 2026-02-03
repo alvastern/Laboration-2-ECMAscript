@@ -13,14 +13,36 @@ async function getData() {
     }
 }
 
-getData();
-
 async function init() {
-    const data = await getData();
-    console.log('Hämtad data', data)
+    const courses = await getData();
+    console.log('Hämtad data', courses)
     renderTable(courses);
 }
 
 init();
 
+// Skapar nya element för kurskoder i tabellen
+let courses = [];
+let tabell = document.getElementById('body-tabell');
 
+function renderTable(courseList) {
+
+    courseList.forEach(course => {
+        let rowCourse = document.createElement('tr');
+
+        let codeTd = document.createElement('td');
+        codeTd.textContent = course.code;
+
+        let nameTd = document.createElement('td');
+        nameTd.textContent = course.coursename;
+
+        let progTd = document.createElement('td');
+        progTd.textContent = course.progression;
+
+        rowCourse.appendChild(codeTd);
+        rowCourse.appendChild(nameTd);
+        rowCourse.appendChild(progTd);
+
+        tabell.appendChild(rowCourse);
+    });
+};
